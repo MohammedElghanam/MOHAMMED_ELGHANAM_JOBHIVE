@@ -1,5 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
+export enum UserRole {
+    CONDIDATURE = 'condidature',
+    RECRUTEUR = 'recruteur',
+  }
+
 @Schema({ timestamps: true })
 export class Auth {
 
@@ -11,6 +16,9 @@ export class Auth {
 
     @Prop()
     password: string;
+
+    @Prop({required: true, enum: UserRole, default: UserRole.CONDIDATURE })
+    role: UserRole;
 
 }
 

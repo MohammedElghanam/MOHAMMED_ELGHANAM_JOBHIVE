@@ -16,7 +16,7 @@ export class AuthService {
 ){}
 
 async register ( loginDto: CreateAuthDto ): Promise<{ message: string, user: object | null }> {
-    const { name, email, password }= loginDto;
+    const { name, email, password, role }= loginDto;
 
     const existingUser = await this.userModel.findOne({ email });
     if (existingUser) throw new BadRequestException('Email is already in use');
@@ -26,7 +26,8 @@ async register ( loginDto: CreateAuthDto ): Promise<{ message: string, user: obj
         const user= await this.userModel.create({
             name,
             email,
-            password: hashPassword
+            password: hashPassword,
+            role
         })
 
         return {
@@ -53,6 +54,7 @@ async login ( loginDto: CreateAuthDto ): Promise<{ token: string }> {
             userId: user._id, 
             name: user.name,
             email: user.email, 
+            role: user.role,
         });
 
         return { token };
