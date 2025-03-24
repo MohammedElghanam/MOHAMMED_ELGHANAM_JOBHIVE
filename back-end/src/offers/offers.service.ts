@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Offer } from './entities/offer.entity';
 
 @Injectable()
@@ -10,10 +10,10 @@ export class OffersService {
 
   constructor(@InjectModel(Offer.name) private offerModel: Model<Offer>) {}
   
-  async create(createOfferDto: CreateOfferDto): Promise<Offer> {
+  async create(createOfferDto: CreateOfferDto, token: string): Promise<Offer> {
     const newOffer = new this.offerModel({
       ...createOfferDto,
-      creator: "67e043a855aa6712c7dfcddb"
+      creator: new Types.ObjectId(token)
     });
     return newOffer.save();
   }

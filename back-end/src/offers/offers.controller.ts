@@ -1,17 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Req } from '@nestjs/common';
 import { OffersService } from './offers.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
-import { Response } from 'express'
+import { Request , Response } from 'express'
 
+
+interface CustomRequest extends Request {
+  user?: any;
+}
 
 @Controller('offers')
 export class OffersController {
   constructor(private readonly offersService: OffersService) {}
 
   @Post()
-  create(@Body() createOfferDto: CreateOfferDto) {
-    return this.offersService.create(createOfferDto);
+  create(@Body() createOfferDto: CreateOfferDto, @Req() req: CustomRequest) {
+    const token = req.user.userId;
+    return this.offersService.create(createOfferDto, token);
   }
 
   @Get()

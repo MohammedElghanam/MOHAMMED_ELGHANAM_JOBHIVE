@@ -1,4 +1,4 @@
-import { IsString, IsArray } from 'class-validator';
+import { IsString, IsArray, IsMongoId, IsNotEmpty } from 'class-validator';
 
 export class CreateOfferDto {
   @IsString()
@@ -16,6 +16,7 @@ export class CreateOfferDto {
   @IsArray()
   technologies: string[];
 
-  @IsString()
+  @IsMongoId()
+  @IsNotEmpty()
   creator: string;
 }
