@@ -1,4 +1,5 @@
-import { IsString, IsArray, IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsString, IsArray, IsMongoId, IsNotEmpty, IsOptional} from 'class-validator';
+import { Types } from 'mongoose';
 
 export class CreateOfferDto {
   @IsString()
@@ -19,4 +20,12 @@ export class CreateOfferDto {
   @IsMongoId()
   @IsNotEmpty()
   creator: string;
+
+  @IsOptional()
+  @IsArray()
+  savedByUsers?: Types.ObjectId[];
+
+  @IsOptional()
+  @IsArray()
+  applicants?: Types.ObjectId[]; 
 }

@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsOptional, IsString, MinLength, IsArray } from "class-validator";
+import { Types } from 'mongoose';
 
 export class CreateAuthDto {
      
@@ -19,4 +20,13 @@ export class CreateAuthDto {
     @IsString()
     @IsNotEmpty()
     readonly role: string;
+
+    @IsOptional()
+    @IsArray()
+    savedOffer?: Types.ObjectId[];
+
+    @IsOptional()
+    @IsArray()
+    appliedOffers?: Types.ObjectId[];
+    
 }

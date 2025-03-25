@@ -38,4 +38,10 @@ export class OffersController {
   remove(@Param('id') id: string) {
     return this.offersService.remove(id);
   }
+
+  @Get(':offerId/appled-offer')
+  async getOfferWithApplicants(@Param('offerId') offerId: string) {
+    return this.offersService.getOfferWithApplicants(offerId);
+  }
+
 }

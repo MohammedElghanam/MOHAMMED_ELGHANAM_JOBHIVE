@@ -1,7 +1,7 @@
 
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Auth } from '../../auth/entities/auth.entity'
+import { Auth } from 'src/auth/entities/auth.entity';
 
 @Schema({ timestamps: true })
 export class Offer extends Document {
@@ -22,6 +22,12 @@ export class Offer extends Document {
 
   @Prop({ type: Types.ObjectId, ref: 'Auth', required: true })
   creator: Types.ObjectId;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Auth' }], default: [] })
+  savedByUsers: Types.ObjectId[]; 
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Auth' }], default: [] })
+  applicants: Types.ObjectId[];
 }
 
 export const OfferSchema = SchemaFactory.createForClass(Offer);

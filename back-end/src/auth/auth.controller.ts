@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import {Offer} from '../offers/entities/offer.entity'
 import { Response } from 'express'
-import { log } from 'console';
+import { Auth } from './entities/auth.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -38,6 +38,21 @@ export class AuthController {
                 message: error.message,
             });
         }
+    }
+
+    @Post(':userId/save/:offerId')
+    async saveOffer(@Param('userId') userId: string, @Param('offerId') offerId: string) {
+        return this.authService.saveOffer(userId, offerId);
+    }
+
+    @Post(':userId/apply/:offerId')
+    async applyForOffer(@Param('userId') userId: string, @Param('offerId') offerId: string) {
+        return this.authService.applyForOffer(userId, offerId);
+    }
+
+    @Get(':userId/saved-offers')
+    async getUserSavedOffers(@Param('userId') userId: string): Promise<Auth> {
+        return this.authService.getUserSavedOffers(userId);
     }
   
 }
