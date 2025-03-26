@@ -34,11 +34,11 @@ jobs:
 
       - name: Build Docker Image for Frontend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/frontend-jobhive:latest ./front-end
+          docker build -t ghcr.io/mohammed_elghanam_jobhive/frontend-jobhive:latest ./front-end
 
       - name: Build Docker Image for Backend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/backend-jobhive:latest ./back-end
+          docker build -t ghcr.io/mohammed_elghanam_jobhive/backend-jobhive:latest ./back-end
 
   push:
     runs-on: ubuntu-latest
