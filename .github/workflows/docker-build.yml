@@ -58,8 +58,8 @@ jobs:
 
       - name: Push Docker Image for Frontend to GHCR
         run: |
-          docker push ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/frontend-jobhive:latest
+          docker push ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/mohammed_elghanam_jobhive-frontend:latest
 
       - name: Push Docker Image for Backend to GHCR
         run: |
-          docker push ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/backend-jobhive:latest
+          docker push ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/mohammed_elghanam_jobhive-backend:latest
