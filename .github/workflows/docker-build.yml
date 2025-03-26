@@ -34,11 +34,11 @@ jobs:
 
       - name: Build Docker Image for Frontend
         run: |
-          docker build -t ghcr.io/mohammed_elghanam_jobhive/frontend-jobhive:latest ./front-end
+          docker build -t ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/frontend-jobhive:latest ./front-end
 
       - name: Build Docker Image for Backend
         run: |
-          docker build -t ghcr.io/mohammed_elghanam_jobhive/backend-jobhive:latest ./back-end
+          docker build -t ghcr.io/mohammedelghanam/mohammed_elghanam_jobhive/backend-jobhive:latest ./back-end
 
   push:
     runs-on: ubuntu-latest
@@ -51,6 +51,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_TOKEN }}
           registry: ghcr.io
+
+      - name: Verify the images before pushing
+        run: |
+          docker images
 
       - name: Push Docker Image for Frontend to GHCR
         run: |
