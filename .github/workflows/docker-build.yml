@@ -50,6 +50,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_TOKEN }}
+        registry: ghcr.io
 
       - name: Push Docker Image for Frontend to GHCR
         run: |
