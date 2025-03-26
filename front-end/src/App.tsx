@@ -30,7 +30,7 @@ function App() {
     <div className="h-16 fixed w-[calc(100%-6rem)] bg-gray-100 flex items-center justify-between px-4">
       {/* Navbar Content */}
       <div className=" flex justify-start items-center gap-3">
-        <Image 
+        <img 
           src="/settings.png" 
           alt="test" 
           width={100} 
@@ -48,7 +48,7 @@ function App() {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11 16.8476C16.6392 16.8476 19.2481 16.1242 19.5 13.2205C19.5 10.3188 17.6812 10.5054 17.6812 6.94511C17.6812 4.16414 15.0452 1 11 1C6.95477 1 4.31885 4.16414 4.31885 6.94511C4.31885 10.5054 2.5 10.3188 2.5 13.2205C2.75295 16.1352 5.36177 16.8476 11 16.8476Z" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           <path d="M13.3888 19.8572C12.0247 21.3719 9.89665 21.3899 8.51947 19.8572" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
-        <Image 
+        <img 
           src="/test.jpg" 
           alt="test" 
           width={100} 
@@ -250,7 +250,7 @@ function App() {
 
                  <div className=" flex justify-between items-center py-2 pt-4">
                    <div className=" flex justify-start items-center gap-2">
-                     <Image 
+                     <img 
                        src={offer.companyImage} 
                        alt="test" 
                        width={100} 
@@ -279,7 +279,7 @@ function App() {
       <div className=" border border-[#94a3b8] rounded-2xl bg-white w-full p-4 mt-14 relative">
                <div className=" flex justify-end items-end h-14 relative">
 
-                <Image 
+                <img 
                   src="/test.jpg" 
                   alt="test" 
                   width={100} 
@@ -333,14 +333,14 @@ function App() {
                 Tell us how we can serve you better.</p>
 
                 <div className=" flex justify-center items-center gap-2">
-                  <Image 
+                  <img 
                     src="/download.png" 
                     alt="test" 
                     width={100} 
                     height={100}
                     className=" w-10 h-10 rounded-lg" 
                   />
-                  <Image 
+                  <img 
                     src="/download (1).png" 
                     alt="test" 
                     width={100} 
