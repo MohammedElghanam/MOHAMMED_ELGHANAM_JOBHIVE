@@ -13,6 +13,8 @@ const isAuthenticated = () => {
 
   try {
     const decodedToken = JSON.parse(atob(token.split('.')[1])); 
+    console.log(" token ",decodedToken);
+    
     const expirationTime = decodedToken.exp * 1000; 
     const currentTime = Date.now();
 
@@ -35,6 +37,10 @@ const Protected: React.FC<ProtectedProps> = ({ children }) => {
     useEffect(() => {
       if (!decodedToken) {
         navigate('/'); 
+      } else if (decodedToken.role === 'recruteur') {
+        navigate('/recruteur');
+      } else {
+        navigate('/condidature', { state: { userData: decodedToken } });
       }
     }, [navigate, decodedToken]);
   

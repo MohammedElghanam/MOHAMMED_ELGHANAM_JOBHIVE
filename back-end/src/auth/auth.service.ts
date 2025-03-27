@@ -56,6 +56,8 @@ export class AuthService {
                 name: user.name,
                 email: user.email, 
                 role: user.role,
+                savedOffers: user.savedOffers,
+                appliedOffers: user.appliedOffers,
             });
 
             return { token };
@@ -130,5 +132,5 @@ export class AuthService {
         return user;
     }
   
-
+    
 }

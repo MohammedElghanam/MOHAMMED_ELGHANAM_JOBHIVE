@@ -44,4 +44,9 @@ export class OffersController {
     return this.offersService.getOfferWithApplicants(offerId);
   }
 
+  @Get(':userId/applied-offers')
+    async getAppliedOffers(@Param('userId') userId: string) {
+        return this.offersService.getAppliedOffers(userId);
+    }
+
 }

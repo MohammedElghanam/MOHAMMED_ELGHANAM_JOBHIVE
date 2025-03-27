@@ -52,4 +52,21 @@ export class OffersService {
     return offer;
   }
 
+
+  async getAppliedOffers(userId: string): Promise<Offer[]> {
+    const user = await this.authModel.findById(userId);
+    
+    if (!user) {
+        throw new NotFoundException('User not found');
+    }
+
+    const offers = await this.offerModel.find({ _id: { $in: user.appliedOffers } }).populate({
+        path: 'applicants',
+        select: '-password',
+        model: 'Auth',
+    });
+
+    return offers;
+}
+
 }

@@ -20,7 +20,9 @@ const useLogin = () => {
 
             const formData = { email, password}
             try {
-                const response = await axios.post('http://localhost:5001/auth/login', formData);
+                console.log(process.env.BASE_URL);
+                
+                const response = await axios.post(`http://localhost:3001/auth/login`, formData);
 
                 if (response.status === 200) {
                     console.log('dkhal hna');
@@ -30,7 +32,7 @@ const useLogin = () => {
                     setEmail('');
                     setPassword('');
                     localStorage.setItem('token', response.data.token);
-                    navigate('/dashboard')
+                    navigate('/recruteur')
                 }
 
             } catch (error: unknown) {

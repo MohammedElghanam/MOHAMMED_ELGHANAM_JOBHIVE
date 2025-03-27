@@ -4,6 +4,8 @@ import Login from "./components/forms/login";
 import Protected from "./hooks/useProtected";
 import Test from "./components/pages/test";
 import Register from "./components/forms/register";
+import Home from "./components/pages/home";
+import Dashboard from "./components/pages/dashboard";
 
 function App() {
   return (
@@ -13,9 +15,10 @@ function App() {
           <Route index element={ <Login /> } />
           <Route path="/test" element={ <Test /> } />
           <Route path="/register" element={ <Register /> } />
-          <Route path="/dashboard" element={ 
+          <Route path="/condidature" element={ <Home /> } />
+          <Route path="/recruteur" element={ 
             <Protected >
-              <Test />
+              <Dashboard />
             </Protected>
           } />
           <Route path="*" element={<Navigate to="/" />} />
