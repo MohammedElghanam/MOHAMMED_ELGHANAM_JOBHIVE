@@ -4,4 +4,10 @@ export interface UserData {
     email: string;
     role: "condidature" | "recruteur";
     appliedOffers: string;
+    technologies: string[];
+}
+
+export interface ProfileProps {
+    userId: string;
+    initialData: UserData;
 }

@@ -12,7 +12,7 @@ const useSavedOffers = (userId: string | undefined) => {
     const fetchSavedOffers = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/auth/${userId}/saved-offers`);
-        setSavedOffers(response.data); 
+        setSavedOffers(response.data.savedOffers); 
       } catch (err) {
         setError("Error fetching saved offers");
       } finally {

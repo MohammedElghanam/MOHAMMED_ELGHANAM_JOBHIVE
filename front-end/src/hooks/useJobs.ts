@@ -67,7 +67,34 @@ const useJobs = () => {
     }
   };
 
-  return { jobs, loading, error, applyForJob };
+    const saveOffer = async (userId: string, offerId: string) => {
+        try {
+            const token = localStorage.getItem("token"); 
+            if (!token) {
+                alert("You must be logged in to save offers!");
+                return;
+            }
+
+            const response = await axios.post(
+                `http://localhost:3001/auth/${userId}/save/${offerId}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            console.log("Offer saved successfully:", response.data);
+            alert("Offer saved successfully!");
+
+        } catch (err) {
+            console.error("Error saving offer:", err);
+            alert("Failed to save offer!");
+        }
+    };
+
+  return { jobs, loading, error, applyForJob, saveOffer };
 };
 
 export default useJobs;

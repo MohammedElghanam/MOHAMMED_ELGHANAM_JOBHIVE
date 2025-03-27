@@ -5,6 +5,7 @@ import useSwitsh from '../../hooks/useSwitsh';
 import OffersComponent from '../ui/offersComponent';
 import SavedComponent from '../ui/savedComponent';
 import AppliedComponent from '../ui/appliedComponent';
+import ProfileComponent from '../ui/profileComponent';
 
 export default function Home() {
 
@@ -79,6 +80,7 @@ export default function Home() {
             {activeComponent === 1 && <OffersComponent userId={userData.userId} />}
             {activeComponent === 2 && <SavedComponent userId={userData.userId} />}
             {activeComponent === 3 && <AppliedComponent userId={userData.userId} />}
+            <ProfileComponent userId={userData.userId} initialData={ userData } />
           </div>
         </main>
     </div>
