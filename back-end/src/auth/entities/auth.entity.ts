@@ -24,6 +24,10 @@ export class Auth {
     @Prop({ type: [{ type: Types.ObjectId, ref: 'Offer' }], default: [] })
     appliedOffers: Types.ObjectId[];
 
+    @Prop({ type: [String], default: [] })
+    technologies: string[];
+
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(Auth);

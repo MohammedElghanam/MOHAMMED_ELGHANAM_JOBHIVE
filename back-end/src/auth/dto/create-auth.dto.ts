@@ -28,5 +28,10 @@ export class CreateAuthDto {
     @IsOptional()
     @IsArray()
     appliedOffers?: Types.ObjectId[];
+
+    @IsOptional()
+    @IsArray()
+    technologies: string[];
+
     
 }

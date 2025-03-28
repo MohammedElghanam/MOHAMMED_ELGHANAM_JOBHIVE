@@ -6,15 +6,23 @@ import OffersComponent from '../ui/offersComponent';
 import SavedComponent from '../ui/savedComponent';
 import AppliedComponent from '../ui/appliedComponent';
 import ProfileComponent from '../ui/profileComponent';
+import OfferDetailsComponent from '../ui/offerDetailsComponent';
+import useLogout from '../../hooks/useLogout';
 
 export default function Home() {
 
     const location = useLocation();
     const userData: UserData = location.state?.userData;
 
-    console.log(userData);
+    const logout = useLogout();
     
-    const { activeComponent, setActiveComponent } = useSwitsh();
+    const { 
+        activeComponent,
+        setActiveComponent,
+        selectedOffer,
+        handleApply,
+        handleSelectOffer
+     } = useSwitsh();
     
 
   return (
@@ -53,9 +61,12 @@ export default function Home() {
     {/* Main Content */}
     <div className="flex-1 flex flex-col ml-64">
       {/* Navbar */}
-      <nav className="bg-white shadow-md p-4 fixed w-full top-0 left-64 flex justify-between items-center z-10">
+      <nav className="bg-white shadow-md p-4 fixed w-5/6 top-0 left-64 flex justify-between items-center z-10">
         <h2 className="text-lg font-semibold">Navbar</h2>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">Logout</button>
+        <div className=' flex justify-center items-center gap-3 '>
+            <button onClick={logout} className="bg-blue-500 text-white px-4 py-2 rounded w-">Logout</button>
+            <button onClick={() => setActiveComponent(4)} className=' cursor-pointer '>{ userData.name }</button>
+        </div>
       </nav>
 
        {/* Page Content */}
@@ -77,10 +88,13 @@ export default function Home() {
 
           {/* Job Cards List */}
           <div className="space-y-4">
-            {activeComponent === 1 && <OffersComponent userId={userData.userId} />}
+            {activeComponent === 1 && <OffersComponent userId={userData.userId} onSelectOffer={handleSelectOffer} />}
             {activeComponent === 2 && <SavedComponent userId={userData.userId} />}
             {activeComponent === 3 && <AppliedComponent userId={userData.userId} />}
-            <ProfileComponent userId={userData.userId} initialData={ userData } />
+            {activeComponent === 4 && <ProfileComponent userId={userData.userId} initialData={ userData } />}
+            {activeComponent === 5 && selectedOffer &&  <OfferDetailsComponent offer={selectedOffer} onApply={handleApply} />}
+            
+           
           </div>
         </main>
     </div>

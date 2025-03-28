@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
+import { UpdateAuthDto  } from './dto/update-auth.dto';
 import {Offer} from '../offers/entities/offer.entity'
 import { Response } from 'express'
 import { Auth } from './entities/auth.entity';
@@ -55,7 +56,13 @@ export class AuthController {
         return this.authService.getUserSavedOffers(userId);
     }
 
-    
+    @Patch(':userId/update')
+    async updateUser(
+        @Param('userId') userId: string,
+        @Body() updateAuthDto: UpdateAuthDto,
+    ) {
+        return this.authService.updateUser(userId, updateAuthDto);
+    }
 
   
 }
