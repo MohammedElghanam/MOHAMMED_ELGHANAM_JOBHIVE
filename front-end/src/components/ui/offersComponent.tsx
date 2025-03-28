@@ -16,8 +16,7 @@ export default function OffersComponent({ userId, onSelectOffer  }: any) {
   
     const filteredJobs = jobs.filter((offer) => {
         const matchesSearch = offer.title.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesContract = contractFilter ? offer.contract=== contractFilter : true;
-        return matchesSearch && matchesContract;
+        return matchesSearch;
     });
 
 
@@ -34,16 +33,6 @@ export default function OffersComponent({ userId, onSelectOffer  }: any) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <select
-                className="p-2 border border-gray-300 rounded w-1/4"
-                value={contractFilter}
-                onChange={(e) => setContractFilter(e.target.value)}
-                >
-                <option value="">Filter by Contract</option>
-                <option value="remote">Remote</option>
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-            </select>
           </div>
 
         {filteredJobs.map((offer, index) => (

@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Login from "./components/forms/login";
 import Protected from "./hooks/useProtected";
-import Test from "./components/pages/test";
 import Register from "./components/forms/register";
 import Home from "./components/pages/home";
 import Dashboard from "./components/pages/dashboard";
@@ -13,7 +12,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={ <Login /> } />
-          <Route path="/test" element={ <Test /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/condidature" element={ <Home /> } />
           <Route path="/recruteur" element={ 

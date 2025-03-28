@@ -71,8 +71,6 @@ export default function Home() {
 
        {/* Page Content */}
        <main className="p-6 mt-16 overflow-y-auto flex-1 h-full bg-gray-100">
-          {/* Search & Filter */}
-          
           {/* Job Cards List */}
           <div className="space-y-4">
             {activeComponent === 1 && <OffersComponent userId={userData.userId} onSelectOffer={handleSelectOffer} />}

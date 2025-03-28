@@ -19,9 +19,14 @@ export class OffersController {
     return this.offersService.create(createOfferDto, token);
   }
 
+  @Get(':recruiterId')
+  findAll(@Param('recruiterId') recruiterId: string) {
+    return this.offersService.findAll(recruiterId);
+  }
+
   @Get()
-  findAll() {
-    return this.offersService.findAll();
+  findAllOffers() {
+    return this.offersService.findAllOffers();
   }
 
   @Get(':id')

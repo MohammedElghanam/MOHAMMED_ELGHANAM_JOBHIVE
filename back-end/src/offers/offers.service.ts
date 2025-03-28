@@ -13,16 +13,45 @@ export class OffersService {
     @InjectModel(Offer.name) private offerModel: Model<Offer>,
     @InjectModel(Auth.name) private readonly authModel: Model<Auth>
   ) {}
-  
+
   async create(createOfferDto: CreateOfferDto, token: string): Promise<Offer> {
     const newOffer = new this.offerModel({
       ...createOfferDto,
       creator: new Types.ObjectId(token)
     });
-    return newOffer.save();
+
+    const savedOffer = await newOffer.save();
+
+    const users = await this.authModel.find();
+
+    const matchingUsers = users.filter(user => {
+        const commonTechnologies = user.technologies.filter(tech =>
+            createOfferDto.technologies.includes(tech)
+        );
+        return commonTechnologies.length >= 2;
+    });
+
+    await Promise.all(
+        matchingUsers.map(async (user) => {
+            await this.offerModel.findByIdAndUpdate(savedOffer._id, {
+                $push: { applicants: user._id }
+            });
+
+            await this.authModel.findByIdAndUpdate(user._id, {
+                $push: { appliedOffers: savedOffer._id }
+            });
+        })
+    );
+
+    return savedOffer;
+}
+
+
+  async findAll(recruiterId: string): Promise<Offer[]> {
+    return this.offerModel.find({ creator: new Types.ObjectId(recruiterId) }).exec();
   }
 
-  async findAll(): Promise<Offer[]> {
+  async findAllOffers(): Promise<Offer[]> {
     return this.offerModel.find().exec();
   }
 
