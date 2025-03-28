@@ -16,12 +16,14 @@ const useJobs = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchJobs();
+      fetchJobs();
   }, []);
 
   const fetchJobs = async () => {
+    // alert(userId)
     setLoading(true);
     try {
+      const userId = localStorage.getItem("userId"); 
         const token = localStorage.getItem("token"); 
         if (!token) {
             alert("You must be logged in to apply!");
@@ -29,7 +31,7 @@ const useJobs = () => {
         }
 
       const response = await axios.get(
-        `http://localhost:3001/offers`,
+        `http://localhost:3001/offers?userId=${userId}`,
         {
             headers: {
               Authorization: `Bearer ${token}`,

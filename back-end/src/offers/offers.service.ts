@@ -51,8 +51,11 @@ export class OffersService {
     return this.offerModel.find({ creator: new Types.ObjectId(recruiterId) }).exec();
   }
 
-  async findAllOffers(): Promise<Offer[]> {
-    return this.offerModel.find().exec();
+  async findAllOffers(userId: string): Promise<Offer[]> {
+    if (!Types.ObjectId.isValid(userId)) {
+      throw new Error('Invalid userId format');
+    }
+    return this.offerModel.find({ 'applicants': { $ne: new Types.ObjectId(userId)} }).exec();
   }
 
   async findOne(id: string): Promise<Offer> {

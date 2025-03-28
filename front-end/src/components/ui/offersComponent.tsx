@@ -9,6 +9,7 @@ interface OffersComponentProps {
 
 export default function OffersComponent({ userId, onSelectOffer  }: any) {
 
+    localStorage.setItem('userId', userId);
     const { jobs, loading, error, applyForJob, saveOffer } = useJobs();
 
     const [searchQuery, setSearchQuery] = useState("");

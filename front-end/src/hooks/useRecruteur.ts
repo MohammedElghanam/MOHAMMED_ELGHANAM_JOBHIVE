@@ -35,7 +35,7 @@ const useRecruteur = (recruiterId: string) => {
     }
   }, [recruiterId]);
 
-  return { offers, loading, error };
+  return { offers, setOffers, loading, error };
 };
 
 export default useRecruteur;
