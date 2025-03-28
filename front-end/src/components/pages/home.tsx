@@ -72,20 +72,7 @@ export default function Home() {
        {/* Page Content */}
        <main className="p-6 mt-16 overflow-y-auto flex-1 h-full bg-gray-100">
           {/* Search & Filter */}
-          <div className="flex gap-4 mb-4">
-            <input 
-              type="text" 
-              placeholder="Search jobs..." 
-              className="p-2 border border-gray-300 rounded w-1/2"
-            />
-            <select className="p-2 border border-gray-300 rounded w-1/4">
-              <option value="">Filter by</option>
-              <option value="remote">Remote</option>
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-            </select>
-          </div>
-
+          
           {/* Job Cards List */}
           <div className="space-y-4">
             {activeComponent === 1 && <OffersComponent userId={userData.userId} onSelectOffer={handleSelectOffer} />}
